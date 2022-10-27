@@ -9,6 +9,6 @@ class Node
     end
 
     #def <=>(other)
-    #    value <=> other.value
+    #    @value <=> other.value
     #end
 end
