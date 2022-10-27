@@ -8,7 +8,7 @@ class Node
         @right = right
     end
 
-    def <=>(other)
-        value <=> other.value
-    end
+    #def <=>(other)
+    #    value <=> other.value
+    #end
 end

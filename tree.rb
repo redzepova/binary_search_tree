@@ -5,8 +5,6 @@ class Tree
 
     def initialize(array)
         @root = build_tree(array.uniq.sort)
-        puts @root.value
-        
     end
 
     def build_tree(array)
@@ -15,10 +13,7 @@ class Tree
         return Node.new(array[0]) if array.length <= 1
 
         mid = array.length/2
-        root = Node.new(array[mid])
-        root.left = build_tree(array[0...mid])
-        root.left = build_tree(array[mid+1..-1])
-        root
+        root = Node.new(array[mid], build_tree(array[0...mid]), build_tree(array[mid + 1 .. -1]))
     end
 
     def pretty_print(node = @root, prefix = '', is_left = true)
