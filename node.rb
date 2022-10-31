@@ -8,7 +8,18 @@ class Node
         @right = right
     end
 
-    #def <=>(other)
-    #    @value <=> other.value
-    #end
+    def has_child?
+        if @left.nil? && @right.nil?
+            return 0
+        elsif @left != nil && @right != nil
+            return 2
+        else
+            return 1
+        end
+    end
+   
+    def <=>(other)
+        value = other.class == Node ? other.value : other
+        @value <=> value
+    end
 end

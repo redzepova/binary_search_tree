@@ -1,4 +1,5 @@
 require_relative 'node.rb'
+require 'pry'
 
 class Tree
     attr_accessor :root
@@ -44,9 +45,44 @@ class Tree
         end
     end
 
-    def delete(value, node = @root)
-        return if node.value == nil
+    def find_node(value, node = @root)
+        return if node.nil?
+        if node == value
+            return node
+        end
+        if find_node(value, node.left) == nil
+            find_node(value, node.right)
+        end
     end
-      
+
+    def delete(value, node = @root)
+        #check if node has children
+        #if no children, delete node from it's parent
+        return if node.nil?
+        return if node.has_child? < 1
+        value < node.value ? child = node.left : child = node.right
+
+        if child.value == value
+            delete_leaf(node, value)
+        end
+
+        if delete(value, node.left) == nil
+            delete(value, node.right)
+        end
+    end
+
+    def delete_leaf(parent, value)
+        value < parent.value ? parent.left = nil : parent.right = nil   
+    end
+
+    def delete_one_child(parent, grandchild, value)
+        #if value is greater than parent value, right
+        #if value is less than parent value, left
+
+        
+    end
+
+    def delete_two_children(parent, direction)
+    end
 end
 
