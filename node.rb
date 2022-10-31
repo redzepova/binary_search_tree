@@ -17,6 +17,14 @@ class Node
             return 1
         end
     end
+
+    def return_one_child
+        if @left.nil?
+            return @right
+        else
+            return @left
+        end
+    end
    
     def <=>(other)
         value = other.class == Node ? other.value : other
