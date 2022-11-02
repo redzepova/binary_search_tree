@@ -69,7 +69,7 @@ class Tree
                 delete_one_child(node, child, value)
                 return
             else
-                delete_two_children
+                delete_two_children(node, child, value)
                 return
             end
         end
@@ -89,8 +89,33 @@ class Tree
         value < parent.value ? parent.left = grandchild : parent.right = grandchild
     end
 
-    def delete_two_children()
-        #something
+    def delete_two_children(parent, child, value)
+        if child.has_child? < 1 
+            reassign_left_child(parent, child, value)
+            return
+        elsif child.left.nil? == true
+            swap_grandchild(parent, child, child.right)
+            return
+        end
+        left_grandchild = child.left
+        delete_two_children(child, left_grandchild, value)
+        reassign_left_child(parent, child, value)
     end
+
+    def reassign_left_child(parent, child, value)
+        if child.value == value
+            parent.left = child.left
+            child.left = nil
+        else
+            child.right = parent.right
+        end
+    end
+
+    def swap_grandchild(parent, child, grandchild)
+        parent.left = grandchild
+        grandchild.left = child
+        child.right = nil
+    end
+
 end
 
