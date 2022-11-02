@@ -47,11 +47,13 @@ class Tree
 
     def find_node(value, node = @root)
         return if node.nil?
-        if node == value
+        if node.value == value
             return node
         end
-        if find_node(value, node.left) == nil
+
+        if value > node.value
             find_node(value, node.right)
+        else find_node(value, node.left)
         end
     end
 
