@@ -58,12 +58,13 @@ class Tree
     end
 
     def delete(value, node = @root)
-        #check if node has children
-        #if no children, delete node from it's parent
-        return if node.nil?
+        return if node.has_child? < 1
+        if @root.value = value
+            delete_root(@root, value)
+            return
+        end
         value < node.value ? child = node.left : child = node.right
-        return if node.has_child? < 1 
-        if child.value == value && 
+        if child.value == value
             if child.has_child? < 1
                 delete_leaf(node, value)
                 return
@@ -76,8 +77,19 @@ class Tree
             end
         end
 
-        if delete(value, node.left) == nil
-            delete(value, node.right)
+        delete(value, child)
+    end
+
+    def delete_root(node, value)
+        if node.has_child? < 1
+            return
+        elsif node.has_child? == 1
+            child = node.return_one_child
+            @root = child
+        else
+            child = node.left
+            delete_two_children(node, child, value)
+            @root = child
         end
     end
 

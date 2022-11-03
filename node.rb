@@ -1,33 +1,35 @@
+# frozen_string_literal: true
+
 class Node
-    include Comparable
-    attr_accessor :value, :left, :right
+  include Comparable
+  attr_accessor :value, :left, :right
 
-    def initialize(value, left = nil, right = nil)
-        @value = value
-        @left = left
-        @right = right
-    end
+  def initialize(value, left = nil, right = nil)
+    @value = value
+    @left = left
+    @right = right
+  end
 
-    def has_child?
-        if @left.nil? && @right.nil?
-            return 0
-        elsif @left != nil && @right != nil
-            return 2
-        else
-            return 1
-        end
+  def has_child?
+    if @left.nil? && @right.nil?
+      0
+    elsif !@left.nil? && !@right.nil?
+      2
+    else
+      1
     end
+  end
 
-    def return_one_child
-        if @left.nil?
-            return @right
-        else
-            return @left
-        end
+  def return_one_child
+    if @left.nil?
+      @right
+    else
+      @left
     end
-   
-    def <=>(other)
-        value = other.class == Node ? other.value : other
-        @value <=> value
-    end
+  end
+
+  def <=>(other)
+    value = other.instance_of?(Node) ? other.value : other
+    @value <=> value
+  end
 end
