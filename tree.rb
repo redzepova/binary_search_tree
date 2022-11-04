@@ -189,7 +189,17 @@ class Tree
     (height(node.left, i)..height(node.right, i)).max
   end
 
-  def depth(node = @root, i = 0); end
+  def depth(node = @root, i = 0, value) 
+    if node.value == value
+        return i
+    end
+
+    if value < node.value
+        depth(node.left, i += 1, value)
+    else
+        depth(node.right, i += 1, value)
+    end
+  end
 
   def balanced?
     node = @root

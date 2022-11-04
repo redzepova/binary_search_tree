@@ -21,3 +21,5 @@ puts tree.balanced?
 tree.rebalance if tree.balanced? == false
 
 tree.pretty_print
+
+puts "tree depth of #{tree.find_node(222)} is #{tree.depth(222)} nodes"
