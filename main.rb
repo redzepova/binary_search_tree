@@ -9,4 +9,3 @@ tree = Tree.new(array)
 tree.pretty_print
 
 puts tree.height
-
