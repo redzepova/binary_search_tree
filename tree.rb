@@ -183,9 +183,7 @@ class Tree
   end
 
   def height(node = @root, i = 0, value = nil)
-    binding.pry
     node = find_node(value) if value.nil? == false
-    binding.pry
     return i if node.has_child?.zero?
 
     i += 1
