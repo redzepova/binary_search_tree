@@ -131,5 +131,59 @@ class Tree
         child.right = nil
     end
 
+    def level_order
+        queue = [@root]
+        result = []
+
+        until queue.empty?
+            node = queue.shift
+            block_given? ? yield(node) : result << node.value
+            queue << node.left unless node.left.nil?
+            queue << node.right unless node.right.nil?
+        end
+
+        return result
+    end
+
+    def post_order(node = @root, &block)
+        return if node.nil?
+
+        post_order(node.left, &block)
+        post_order(node.right, &block)
+
+        if block_given?
+            yield(node)
+        else
+            puts node.value
+        end
+    end
+
+    def pre_order(node = @root, &block)
+        return if node.nil?
+
+        if block_given? 
+            yield(node)
+        else
+            puts node.value
+        end
+        pre_order(node.left, &block)
+        pre_order(node.right, &block)
+    end
+
+    def inorder(node = @root, &block)
+        return if node.nil?
+
+        inorder(node.left, &block)
+
+        if block_given?
+            yield(node)
+        else
+            puts node.value
+        end
+
+        inorder(node.right, &block)
+    end
+
+
 end
 
