@@ -184,6 +184,21 @@ class Tree
         inorder(node.right, &block)
     end
 
+    def height
+    end
+
+    def depth
+    end
+
+    def balanced?
+    end
+
+    def rebalance
+        array = []
+        inorder{|node| array << node.value}
+        @root = build_tree(array.uniq.sort)
+    end
+
 
 end
 
