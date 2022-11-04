@@ -184,10 +184,19 @@ class Tree
         inorder(node.right, &block)
     end
 
-    def height
+    def height(node = @root, i = 0, value = nil)
+        binding.pry
+        node = find_node(value) if value.nil? == false
+        binding.pry
+        return i if node.has_child? == 0
+
+        i += 1
+
+        (height(node.left, i) .. height(node.right, i)).max
     end
 
-    def depth
+    def depth(node = @root, i = 0)
+
     end
 
     def balanced?
