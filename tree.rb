@@ -149,21 +149,14 @@ class Tree
     post_order(node.left, &block)
     post_order(node.right, &block)
 
-    if block_given?
-      yield(node)
-    else
-      puts node.value
-    end
+    do_something(node, &block)
   end
 
   def pre_order(node = @root, &block)
     return if node.nil?
 
-    if block_given?
-      yield(node)
-    else
-      puts node.value
-    end
+    do_something(node, &block)
+
     pre_order(node.left, &block)
     pre_order(node.right, &block)
   end
@@ -173,13 +166,17 @@ class Tree
 
     inorder(node.left, &block)
 
-    if block_given?
-      yield(node)
-    else
-      puts node.value
-    end
+    do_something(node, &block)
 
     inorder(node.right, &block)
+  end
+
+  def do_something(node, &block)
+    if block_given?
+        yield(node)
+      else
+        puts node.value
+      end
   end
 
   def height(node = @root, i = 0, value = nil)
