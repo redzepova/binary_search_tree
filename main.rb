@@ -6,4 +6,18 @@ require_relative 'node'
 array = [99, 17, 47, 10, 58, 129, 39]
 tree = Tree.new(array)
 
+tree.insert(192)
+tree.insert(384)
+tree.insert(222)
+tree.insert(385)
+tree.insert(372)
+tree.insert(879)
+
+tree.pretty_print
+
+
+puts tree.balanced?
+
+tree.rebalance if tree.balanced? == false
+
 tree.pretty_print

@@ -149,13 +149,13 @@ class Tree
     post_order(node.left, &block)
     post_order(node.right, &block)
 
-    do_something(node, &block)
+    access_node(node, &block)
   end
 
   def pre_order(node = @root, &block)
     return if node.nil?
 
-    do_something(node, &block)
+    access_node(node, &block)
 
     pre_order(node.left, &block)
     pre_order(node.right, &block)
@@ -166,22 +166,23 @@ class Tree
 
     inorder(node.left, &block)
 
-    do_something(node, &block)
+    access_node(node, &block)
 
     inorder(node.right, &block)
   end
 
-  def do_something(node, &block)
+  def access_node(node, &block)
     if block_given?
         yield(node)
-      else
+    else
         puts node.value
-      end
+    end
   end
 
   def height(node = @root, i = 0, value = nil)
+    return i if node.nil?
     node = find_node(value) if value.nil? == false
-    return i if node.has_child?.zero?
+    return i if node.has_child? == 0
 
     i += 1
 
@@ -190,8 +191,16 @@ class Tree
 
   def depth(node = @root, i = 0); end
 
-  def balanced?; end
+  def balanced?
+    node = @root
+    left = height(node.left, 1)
+    right = height(node.right, 1)
 
+    (left - right).abs > 1 ? result = false : result = true
+
+    return result
+  end
+  
   def rebalance
     array = []
     inorder { |node| array << node.value }
