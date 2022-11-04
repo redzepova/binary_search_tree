@@ -175,7 +175,7 @@ class Tree
     if block_given?
         yield(node)
     else
-        puts node.value
+        return node.value
     end
   end
 

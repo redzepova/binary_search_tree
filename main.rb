@@ -13,13 +13,23 @@ tree.insert(385)
 tree.insert(372)
 tree.insert(879)
 
-tree.pretty_print
-
-
 puts tree.balanced?
 
 tree.rebalance if tree.balanced? == false
 
 tree.pretty_print
 
-puts "tree depth of #{tree.find_node(222)} is #{tree.depth(222)} nodes"
+pre_order = []
+post_order = []
+in_order = []
+
+tree.pre_order {|node| pre_order << node.value}
+tree.post_order {|node| post_order << node.value}
+tree.inorder {|node| in_order << node.value}
+
+puts "Level order: #{tree.level_order}"
+puts "Pre-order: #{pre_order}"
+puts "Post-order: #{post_order}"
+puts "In-order: #{in_order}"
+
+
