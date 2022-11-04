@@ -3,7 +3,7 @@
 require_relative 'tree'
 require_relative 'node'
 
-array = [99, 17, 47, 10, 58, 129, 39]
+array = (Array.new(15) {rand(1..100)})
 tree = Tree.new(array)
 
 tree.insert(192)
